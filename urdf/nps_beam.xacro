@@ -2,16 +2,16 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- note: a samples value less than 3 causes Ogre::AxisAlignedBox error -->
-  <xacro:macro name="sonar_single_beam" params="namespace suffix parent_link topic beam_width samples update_rate min_range max_range *origin">
+  <xacro:macro name="nps_beam" params="namespace suffix parent_link topic beam_width samples update_rate min_range max_range *origin">
 
     <!-- joint to Sonar link -->
-    <joint name="${namespace}_sonar_single_beam${suffix}_joint" type="fixed">
+    <joint name="${namespace}_nps_beam${suffix}_joint" type="fixed">
       <parent link="${parent_link}" />
-      <child link="${namespace}/sonar_single_beam${suffix}_link" />
+      <child link="${namespace}/nps_beam${suffix}_link" />
       <xacro:insert_block name="origin" />
     </joint>
 
-    <link name="${namespace}/sonar_single_beam${suffix}_link">
+    <link name="${namespace}/nps_beam${suffix}_link">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <mass value="1" />
@@ -31,11 +31,11 @@
       </visual>
     </link>
 
-  <gazebo reference="${namespace}/sonar_single_beam${suffix}_link">
+  <gazebo reference="${namespace}/nps_beam${suffix}_link">
 
     <selfCollide>false</selfCollide>
  
-    <sensor type="gpu_ray" name="ray_sensor">
+    <sensor type="nps_beam" name="beam_sensor">
       <always_on>true</always_on>
       <update_rate>${update_rate}</update_rate>
       <pose>0 0 0 0 0 0</pose>
@@ -69,7 +69,7 @@
         </range>
       </ray>
 
-      <plugin name="nps_gpu_sonar_single_beam_plugin" filename="libnps_gazebo_ros_gpu_ray_single_beam_plugin.so">
+      <plugin name="nps_beam" filename="/home/bruce/uuv_ws/devel/lib/libnps_gazebo_ros_beam_plugin.so">
         <robotNamespace>${namespace}</robotNamespace>
         <frameName>${namespace}/${topic}${suffix}_link</frameName>
         <topicName>${topic}${suffix}_sonar_range</topicName>
