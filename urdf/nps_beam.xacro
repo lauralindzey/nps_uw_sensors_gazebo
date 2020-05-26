@@ -69,7 +69,7 @@
         </range>
       </ray>
 
-      <plugin name="nps_beam" filename="/home/bruce/uuv_ws/devel/lib/libnps_gazebo_ros_beam_plugin.so">
+      <plugin name="nps_beam" filename="libnps_gazebo_ros_beam_plugin.so">
         <robotNamespace>${namespace}</robotNamespace>
         <frameName>${namespace}/${topic}${suffix}_link</frameName>
         <topicName>${topic}${suffix}_sonar_range</topicName>

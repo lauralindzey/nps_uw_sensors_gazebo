@@ -26,11 +26,8 @@ namespace gazebo {
 
 class AddNpsBeamSensor : public SystemPlugin {
 
-//    public: virtual ~AddNpsBeamSensor() {}
-
     public: void Load(int _argc, char** _argv) {
         gzdbg <<"Adding NpsBeamSensor" << std::endl;
-        gzerr <<"Adding NpsBeamSensor" << std::endl;
         RegisterNpsBeamSensor();
 
         // diagnostic
@@ -39,11 +36,7 @@ class AddNpsBeamSensor : public SystemPlugin {
 
         for (const std::string& t : types) {
             gzdbg <<"Sensor type: \"" <<t <<"\"" <<std::endl;
-            gzerr <<"Sensor type: \"" <<t <<"\"" <<std::endl;
         }
-
-
-
     }
 };
 
