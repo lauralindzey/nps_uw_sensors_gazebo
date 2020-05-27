@@ -19,7 +19,7 @@
 #include "NpsBeamSensor.hh"
 
 using namespace gazebo;
-GZ_REGISTER_SENSOR_PLUGIN(NpsBeamPlugin)
+//zzGZ_REGISTER_SENSOR_PLUGIN(NpsBeamPlugin)
 
 /////////////////////////////////////////////////
 NpsBeamPlugin::NpsBeamPlugin()
