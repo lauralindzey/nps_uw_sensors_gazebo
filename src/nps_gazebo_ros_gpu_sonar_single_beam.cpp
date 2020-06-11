@@ -255,8 +255,13 @@ void NpsGazeboRosGpuSingleBeamSonar::OnScan(ConstLaserScanStampedPtr &_msg)
   float range = laser_msg.range_max - laser_msg.range_min;
   auto range_it = _msg->scan().ranges().begin();
   auto intensity_it = _msg->scan().intensities().begin();
+  std::cout << "Scan:\n";
   while (range_it != _msg->scan().ranges().end())
   {
+    std::cout << "Angle: " << angle
+              << ", intensity i: " << *intensity_it
+              << ", range i: " << *range_it << "\n";
+
     // Andi is going to put some code here to implement sonar eqn's.
     // sum of f(intensity, angle)
     intensity += *intensity_it * cos(10.0 * angle);
@@ -287,7 +292,6 @@ void NpsGazeboRosGpuSingleBeamSonar::OnScan(ConstLaserScanStampedPtr &_msg)
   // store calculated range and intensity
   laser_msg.ranges.push_back(range);
   laser_msg.intensities.push_back(intensity);
-
 
   // publish
   this->pub_queue_->push(laser_msg, this->pub_);
